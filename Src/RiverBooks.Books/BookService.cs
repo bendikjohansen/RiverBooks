@@ -2,12 +2,12 @@
 
 internal interface IBookService
 {
-    IEnumerable<BookDto> ListBooks();
+    ICollection<BookDto> ListBooks();
 }
 
 internal class BookService : IBookService
 {
-    public IEnumerable<BookDto> ListBooks() =>
+    public ICollection<BookDto> ListBooks() =>
     [
         new BookDto(Guid.NewGuid(), "The Fellowship of the Ring", "J.R.R. Tolkien"),
         new BookDto(Guid.NewGuid(), "The Two Towers", "J.R.R. Tolkien"),

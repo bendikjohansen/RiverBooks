@@ -1,8 +1,5 @@
 @RiverBooks.Web_HostAddress = https://localhost:7100
 
-GET {{RiverBooks.Web_HostAddress}}/books/
-Accept: application/json
-
 ### List Books
-GET {{RiverBooks.Web_HostAddress}}/books/
+GET {{RiverBooks.Web_HostAddress}}/books
 Accept: application/json
