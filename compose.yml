@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ikv4J.Q!rymgVWfHkfD!FHUY
+      POSTGRES_DB: RiverBooks
+    ports:
+      - "5432:5432"

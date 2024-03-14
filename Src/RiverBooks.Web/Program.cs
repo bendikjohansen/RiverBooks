@@ -7,7 +7,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddFastEndpoints();
 
-builder.Services.AddBookServices();
+builder.Services.AddBookServices(builder.Configuration);
 
 var app = builder.Build();
 
