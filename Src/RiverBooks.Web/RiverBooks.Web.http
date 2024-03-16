@@ -3,3 +3,37 @@
 ### List Books
 GET {{RiverBooks.Web_HostAddress}}/books
 Accept: application/json
+
+### Get Book
+@BookId=DFFE455B-8F20-4B08-9EC5-3B4A1FFC4D18
+GET {{RiverBooks.Web_HostAddress}}/books/{{BookId}}
+Accept: application/json
+
+### Create Book
+POST {{RiverBooks.Web_HostAddress}}/books
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "518B2BB4-CE5D-4EAA-9B7A-82FA382291DA",
+  "title": "Modular Monoliths - Getting Started",
+  "author": "Steve Smith",
+  "price": 29.99
+}
+
+#### Get created book
+GET {{RiverBooks.Web_HostAddress}}/books/518b2bb4-ce5d-4eaa-9b7a-82fa382291da
+Accept: application/json
+
+#### Delete created book
+DELETE {{RiverBooks.Web_HostAddress}}/books/518b2bb4-ce5d-4eaa-9b7a-82fa382291da
+Accept: application/json
+
+### Update book price
+POST {{RiverBooks.Web_HostAddress}}/books/518b2bb4-ce5d-4eaa-9b7a-82fa382291da/pricehistory
+Accept: application/json
+Content-Type: application/json
+
+{
+  "newPrice": -9.99
+}

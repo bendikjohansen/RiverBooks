@@ -13,5 +13,8 @@
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="RiverBooks.Books.Tests" />
+    </ItemGroup>
 
 </Project>
