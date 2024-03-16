@@ -8,7 +8,7 @@ using Testcontainers.PostgreSql;
 
 using Xunit.Abstractions;
 
-namespace RiverBooks.Books.Tests.Endpoints;
+namespace RiverBooks.Books.Tests;
 
 public class Fixture(IMessageSink messageSink) : AppFixture<Program>(messageSink)
 {

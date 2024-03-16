@@ -7,7 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Web", "Src/River
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Books", "Src/RiverBooks.Books\RiverBooks.Books.csproj", "{D1752A2D-8944-4235-AA9B-F8A811094284}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Books.Tests", "RiverBooks.Books.Tests\RiverBooks.Books.Tests.csproj", "{784E308F-B505-4B2D-8B5B-EE0A718DB0A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Books.Tests", "Src/RiverBooks.Books.Tests\RiverBooks.Books.Tests.csproj", "{784E308F-B505-4B2D-8B5B-EE0A718DB0A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Books Module", "Books Module", "{11FEBD44-6BAF-48AE-9296-BC61AF68CFC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users Module", "Users Module", "{3A885870-5C7D-4C45-9724-3864B95C7EC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Users", "Src/RiverBooks.Users\RiverBooks.Users.csproj", "{D5B75039-89BB-43DA-8538-2EE47DBD3839}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +36,14 @@ Global
 		{784E308F-B505-4B2D-8B5B-EE0A718DB0A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{784E308F-B505-4B2D-8B5B-EE0A718DB0A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{784E308F-B505-4B2D-8B5B-EE0A718DB0A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5B75039-89BB-43DA-8538-2EE47DBD3839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5B75039-89BB-43DA-8538-2EE47DBD3839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5B75039-89BB-43DA-8538-2EE47DBD3839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5B75039-89BB-43DA-8538-2EE47DBD3839}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D1752A2D-8944-4235-AA9B-F8A811094284} = {11FEBD44-6BAF-48AE-9296-BC61AF68CFC6}
+		{784E308F-B505-4B2D-8B5B-EE0A718DB0A6} = {11FEBD44-6BAF-48AE-9296-BC61AF68CFC6}
+		{D5B75039-89BB-43DA-8538-2EE47DBD3839} = {3A885870-5C7D-4C45-9724-3864B95C7EC3}
 	EndGlobalSection
 EndGlobal

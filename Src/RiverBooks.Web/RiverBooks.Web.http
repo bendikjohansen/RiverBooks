@@ -1,8 +1,31 @@
 @RiverBooks.Web_HostAddress = https://localhost:7100
 
+### Create User
+POST {{RiverBooks.Web_HostAddress}}/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "bendikj@gmail.com",
+  "password": "$eCr3t"
+}
+
+### Login
+POST {{RiverBooks.Web_HostAddress}}/users/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "bendikj@gmail.com",
+  "password": "$eCr3t"
+}
+
+> {% client.global.set("Token", response.body.token); %}
+
 ### List Books
 GET {{RiverBooks.Web_HostAddress}}/books
 Accept: application/json
+Authorization: Bearer {{ Token }}
 
 ### Get Book
 @BookId=DFFE455B-8F20-4B08-9EC5-3B4A1FFC4D18

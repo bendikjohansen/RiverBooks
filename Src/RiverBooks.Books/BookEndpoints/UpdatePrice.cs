@@ -1,7 +1,6 @@
 using FastEndpoints;
 
 using FluentValidation;
-using FluentValidation.Results;
 
 namespace RiverBooks.Books.BookEndpoints;
 
