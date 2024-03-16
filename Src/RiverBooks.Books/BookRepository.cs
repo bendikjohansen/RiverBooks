@@ -43,7 +43,7 @@ internal class EfBookRepository(BookDbContext dbContext) : IBookRepository
     }
 }
 
-public class BookDbContext(DbContextOptions options) : DbContext(options)
+public class BookDbContext(DbContextOptions<BookDbContext> options) : DbContext(options)
 {
     internal DbSet<Book> Books { get; set; } = default!;
 
