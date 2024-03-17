@@ -28,7 +28,7 @@ Accept: application/json
 Authorization: Bearer {{ Token }}
 
 ### Get Book
-@BookId=DFFE455B-8F20-4B08-9EC5-3B4A1FFC4D18
+@BookId=418B2BB4-CE5D-4EAA-9B7A-82FA382291DA
 GET {{RiverBooks.Web_HostAddress}}/books/{{BookId}}
 Accept: application/json
 

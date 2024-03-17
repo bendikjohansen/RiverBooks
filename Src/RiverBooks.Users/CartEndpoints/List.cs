@@ -8,11 +8,11 @@ using MediatR;
 
 using RiverBooks.Users.UseCases;
 
-namespace RiverBooks.Users.Endpoints;
+namespace RiverBooks.Users.CartEndpoints;
 
 public record CartResponse(List<CartItemDto> CartItems);
 
-public class ListCartItems(IMediator mediator) : EndpointWithoutRequest<CartResponse>
+public class ListCartItems(ISender mediator) : EndpointWithoutRequest<CartResponse>
 {
     private const string EmailAddress = nameof(EmailAddress);
 

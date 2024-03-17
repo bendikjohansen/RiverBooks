@@ -13,5 +13,8 @@
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
       <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\RiverBooks.Books.Contracts\RiverBooks.Books.Contracts.csproj" />
+    </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@ using MediatR;
 
 using RiverBooks.Users.UseCases;
 
-namespace RiverBooks.Users.Endpoints;
+namespace RiverBooks.Users.CartEndpoints;
 
 public record AddCartItemRequest(Guid BookId, int Quantity);
 

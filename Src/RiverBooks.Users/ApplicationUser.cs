@@ -21,6 +21,8 @@ public class ApplicationUser : IdentityUser
         {
             existingBook.UpdateQuantity(existingBook.Quantity + item.Quantity);
             // TODO: What if other details have changed?
+            existingBook.UpdateDescription(item.Description);
+            existingBook.UpdateUnitPrice(item.UnitPrice);
             return;
         }
 
@@ -44,12 +46,22 @@ public record CartItem
 
     public Guid Id { get; init; } = Guid.NewGuid();
     public Guid BookId { get; init; }
-    public string Description { get; init; }
+    public string Description { get; set; }
     public int Quantity { get; set; }
-    public decimal UnitPrice { get; init; }
+    public decimal UnitPrice { get; set; }
 
     public void UpdateQuantity(int newQuantity)
     {
         Quantity = newQuantity;
+    }
+
+    internal void UpdateDescription(string description)
+    {
+        Description = description;
+    }
+
+    internal void UpdateUnitPrice(decimal unitPrice)
+    {
+        UnitPrice = unitPrice;
     }
 }
