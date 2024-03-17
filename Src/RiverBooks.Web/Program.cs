@@ -1,3 +1,5 @@
+using System.Reflection;
+
 using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
@@ -23,9 +25,12 @@ builder.Services.AddFastEndpoints()
     .AddAuthorization()
     .SwaggerDocument();
 
+List<Assembly> mediatrAssemblies = [typeof(Program).Assembly];
 builder.Services
-    .AddBookModuleServices(builder.Configuration, logger)
-    .AddUserModuleServices(builder.Configuration, logger);
+    .AddBookModuleServices(builder.Configuration, logger, mediatrAssemblies)
+    .AddUserModuleServices(builder.Configuration, logger, mediatrAssemblies);
+
+builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(mediatrAssemblies.ToArray()));
 
 var app = builder.Build();
 

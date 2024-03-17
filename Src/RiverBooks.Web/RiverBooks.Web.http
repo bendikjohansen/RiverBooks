@@ -60,3 +60,20 @@ Content-Type: application/json
 {
   "newPrice": -9.99
 }
+
+### Add Item to cart
+POST {{RiverBooks.Web_HostAddress}}/cart
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+{
+  "bookId": "{{BookId}}",
+  "quantity": 1
+}
+
+### List cart
+
+GET {{RiverBooks.Web_HostAddress}}/cart
+Accept: application/json
+Authorization: Bearer {{Token}}
