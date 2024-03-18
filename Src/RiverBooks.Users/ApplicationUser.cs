@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace RiverBooks.Users;
 
-public class ApplicationUser : IdentityUser
+internal class ApplicationUser : IdentityUser
 {
     public string FullName { get; set; } = string.Empty;
 
@@ -28,6 +28,8 @@ public class ApplicationUser : IdentityUser
 
         _cartItems.Add(item);
     }
+
+    public void ClearCart() => _cartItems.Clear();
 }
 
 public record CartItem

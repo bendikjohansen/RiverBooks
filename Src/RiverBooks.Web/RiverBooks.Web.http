@@ -77,3 +77,20 @@ Authorization: Bearer {{Token}}
 GET {{RiverBooks.Web_HostAddress}}/cart
 Accept: application/json
 Authorization: Bearer {{Token}}
+
+### List orders
+
+GET {{RiverBooks.Web_HostAddress}}/orders
+Accept: application/json
+Authorization: Bearer {{Token}}
+
+### Checkout Cart
+POST {{RiverBooks.Web_HostAddress}}/cart/checkout
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+{
+  "shippingAddressId": "79C27BA7-1703-4E42-8B7B-0CE16B50CDE2",
+  "billingAddressId": "79C27BA7-1703-4E42-8B7B-0CE16B50CDE2"
+}

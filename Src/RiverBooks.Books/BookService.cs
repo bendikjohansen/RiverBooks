@@ -1,3 +1,5 @@
+using RiverBooks.Books.Data;
+
 namespace RiverBooks.Books;
 
 internal interface IBookService

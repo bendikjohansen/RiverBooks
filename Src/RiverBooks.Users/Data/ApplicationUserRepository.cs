@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace RiverBooks.Users;
+namespace RiverBooks.Users.Data;
 
 internal interface IApplicationUserRepository
 {

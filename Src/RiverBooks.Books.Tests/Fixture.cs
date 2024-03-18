@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
+using RiverBooks.Books.Data;
 using RiverBooks.Web;
 
 using Testcontainers.PostgreSql;
