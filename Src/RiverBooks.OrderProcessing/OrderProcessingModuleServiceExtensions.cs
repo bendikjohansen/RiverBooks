@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using RiverBooks.OrderProcessing.Data;
+using RiverBooks.OrderProcessing.Integrations;
 
 using Serilog;
 
@@ -22,6 +23,7 @@ public static class OrderProcessingModuleServiceExtensions
         services.AddDbContext<OrderProcessingDbContext>(config => config.UseNpgsql(connectionString));
         mediatrAssemblies.Add(typeof(OrderProcessingModuleServiceExtensions).Assembly);
         services.AddScoped<IOrderRepository, EfOrderRepository>();
+        services.AddScoped<IOrderAddressCache, RedisOrderAddressCache>();
 
         logger.Information("{Module} module services registered", "OrderProcessing");
 

@@ -9,3 +9,8 @@ services:
       POSTGRES_DB: RiverBooks
     ports:
       - "5432:5432"
+  cache:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
