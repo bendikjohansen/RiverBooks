@@ -5,7 +5,7 @@ using MediatR;
 using RiverBooks.OrderProcessing.Contracts;
 using RiverBooks.Users.Data;
 
-namespace RiverBooks.Users.UseCases;
+namespace RiverBooks.Users.UseCases.Cart;
 
 public record CheckoutCartCommand(string EmailAddress, Guid ShippingAddressId, Guid BillingAddressId) : IRequest<Result<Guid>>;
 

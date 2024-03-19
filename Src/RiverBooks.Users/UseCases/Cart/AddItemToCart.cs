@@ -5,7 +5,7 @@ using MediatR;
 using RiverBooks.Books.Contracts;
 using RiverBooks.Users.Data;
 
-namespace RiverBooks.Users.UseCases;
+namespace RiverBooks.Users.UseCases.Cart;
 
 public record AddItemToCartCommand(Guid BookId, int Quantity, string EmailAddress) : IRequest<Result>;
 

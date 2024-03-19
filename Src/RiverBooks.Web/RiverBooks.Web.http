@@ -73,13 +73,11 @@ Authorization: Bearer {{Token}}
 }
 
 ### List cart
-
 GET {{RiverBooks.Web_HostAddress}}/cart
 Accept: application/json
 Authorization: Bearer {{Token}}
 
 ### List orders
-
 GET {{RiverBooks.Web_HostAddress}}/orders
 Accept: application/json
 Authorization: Bearer {{Token}}
@@ -91,6 +89,26 @@ Content-Type: application/json
 Authorization: Bearer {{Token}}
 
 {
-  "shippingAddressId": "79C27BA7-1703-4E42-8B7B-0CE16B50CDE2",
-  "billingAddressId": "79C27BA7-1703-4E42-8B7B-0CE16B50CDE2"
+  "shippingAddressId": "5cd52033-fa32-4d6a-b008-d2b07c667724",
+  "billingAddressId": "5cd52033-fa32-4d6a-b008-d2b07c667724"
+}
+
+### List addresses
+GET {{RiverBooks.Web_HostAddress}}/user/address
+Accept: application/json
+Authorization: Bearer {{Token}}
+
+### Add address
+POST {{RiverBooks.Web_HostAddress}}/user/address
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+{
+  "Street1": "124 Main",
+  "Street2": "",
+  "City": "Kent",
+  "State": "OH",
+  "PostalCode": "44444",
+  "Country": "USA"
 }

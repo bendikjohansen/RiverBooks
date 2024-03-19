@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 using Serilog;
 
-namespace RiverBooks.Users.Endpoints;
+namespace RiverBooks.Users.UserEndpoints;
 
 public record UserLoginRequest(string Email, string Password);
 

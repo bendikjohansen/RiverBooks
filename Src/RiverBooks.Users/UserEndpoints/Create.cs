@@ -1,13 +1,10 @@
-using System.Net;
-
 using FastEndpoints;
 
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 
 using ProblemDetails = FastEndpoints.ProblemDetails;
 
-namespace RiverBooks.Users.Endpoints;
+namespace RiverBooks.Users.UserEndpoints;
 
 public record CreateUserRequest(string Email, string Password);
 

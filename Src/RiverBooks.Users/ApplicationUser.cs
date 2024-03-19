@@ -2,15 +2,20 @@ using Ardalis.GuardClauses;
 
 using Microsoft.AspNetCore.Identity;
 
+using RiverBooks.Users.Data;
+using RiverBooks.Users.UseCases.User;
+
 namespace RiverBooks.Users;
 
 internal class ApplicationUser : IdentityUser
 {
     public string FullName { get; set; } = string.Empty;
 
-    private readonly List<CartItem> _cartItems = new();
+    private readonly List<CartItem> _cartItems = [];
+    private readonly List<UserStreetAddress> _addresses = [];
 
     public IReadOnlyCollection<CartItem> CartItems => _cartItems.AsReadOnly();
+    public IReadOnlyCollection<UserStreetAddress> Addresses => _addresses.AsReadOnly();
 
     public void AddItemToCart(CartItem item)
     {
@@ -30,40 +35,20 @@ internal class ApplicationUser : IdentityUser
     }
 
     public void ClearCart() => _cartItems.Clear();
-}
 
-public record CartItem
-{
-    public CartItem(Guid bookId, string description, int quantity, decimal unitPrice)
+    public UserStreetAddress AddAddress(Address address)
     {
-        BookId = Guard.Against.Default(bookId);
-        Description = Guard.Against.NullOrEmpty(description);
-        Quantity = Guard.Against.Negative(quantity);
-        UnitPrice = Guard.Against.Negative(unitPrice);
-    }
+        Guard.Against.Null(address);
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    public CartItem() { } // EF
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        var existingAddress = _addresses.SingleOrDefault(a => a.StreetAddress == address);
+        if (existingAddress is not null)
+        {
+            return existingAddress;
+        }
 
-    public Guid Id { get; init; } = Guid.NewGuid();
-    public Guid BookId { get; init; }
-    public string Description { get; set; }
-    public int Quantity { get; set; }
-    public decimal UnitPrice { get; set; }
+        var newAddress = new UserStreetAddress(Id, address);
+        _addresses.Add(newAddress);
 
-    public void UpdateQuantity(int newQuantity)
-    {
-        Quantity = newQuantity;
-    }
-
-    internal void UpdateDescription(string description)
-    {
-        Description = description;
-    }
-
-    internal void UpdateUnitPrice(decimal unitPrice)
-    {
-        UnitPrice = unitPrice;
+        return newAddress;
     }
 }

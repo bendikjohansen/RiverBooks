@@ -4,7 +4,7 @@ using MediatR;
 
 using RiverBooks.Users.Data;
 
-namespace RiverBooks.Users.UseCases;
+namespace RiverBooks.Users.UseCases.Cart;
 
 public record ListCartItemsQuery(string EmailAddress) : IRequest<Result<List<CartItemDto>>>;
 

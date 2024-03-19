@@ -30,3 +30,14 @@ internal class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
         builder.Property(item => item.Id).ValueGeneratedNever();
     }
 }
+
+internal class UserStreetAddressConfiguration : IEntityTypeConfiguration<UserStreetAddress>
+{
+    public void Configure(EntityTypeBuilder<UserStreetAddress> builder)
+    {
+        builder.ToTable(nameof(UserStreetAddress));
+        builder.Property(x => x.Id).ValueGeneratedNever();
+
+        builder.ComplexProperty(usa => usa.StreetAddress);
+    }
+}
