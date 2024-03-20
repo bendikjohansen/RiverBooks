@@ -2,13 +2,13 @@ using System.Reflection;
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace RiverBooks.Users.Data;
 
-internal class UsersDbContext(DbContextOptions<UsersDbContext> options) : IdentityDbContext(options)
+internal class UsersDbContext(DbContextOptions<UsersDbContext> options, IDomainEventDispatcher? dispatcher) : IdentityDbContext(options)
 {
     public DbSet<ApplicationUser> ApplicationUsers { get; set; } = default!;
+    public DbSet<UserStreetAddress> UserStreetAddresses { get; set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -21,23 +21,21 @@ internal class UsersDbContext(DbContextOptions<UsersDbContext> options) : Identi
     {
         configurationBuilder.Properties<decimal>().HavePrecision(18, 6);
     }
-}
 
-internal class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
-{
-    public void Configure(EntityTypeBuilder<CartItem> builder)
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
-        builder.Property(item => item.Id).ValueGeneratedNever();
-    }
-}
+        var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-internal class UserStreetAddressConfiguration : IEntityTypeConfiguration<UserStreetAddress>
-{
-    public void Configure(EntityTypeBuilder<UserStreetAddress> builder)
-    {
-        builder.ToTable(nameof(UserStreetAddress));
-        builder.Property(x => x.Id).ValueGeneratedNever();
+        if (dispatcher == null)
+        {
+            return result;
+        }
 
-        builder.ComplexProperty(usa => usa.StreetAddress);
+        var entitiesWithEvents = (ChangeTracker.Entries<IHaveDomainEvents>()
+                .Select(e => e.Entity)
+                .Where(e => e.DomainEvents.Any()))
+            .ToArray();
+        await dispatcher.DispatchAndClearEventsAsync(entitiesWithEvents);
+        return result;
     }
 }

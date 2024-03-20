@@ -24,6 +24,8 @@ public static class UsersModuleServiceExtensions
             .AddEntityFrameworkStores<UsersDbContext>();
         mediatrAssemblies.Add(typeof(UsersModuleServiceExtensions).Assembly);
         services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
+        services.AddScoped<IReadOnlyUserStreetAddressRepository, EfUserStreetAddressRepository>();
+        services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
 
         logger.Information("{Module} module services registered", "Users");
 

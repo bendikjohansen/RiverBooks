@@ -89,8 +89,8 @@ Content-Type: application/json
 Authorization: Bearer {{Token}}
 
 {
-  "shippingAddressId": "5cd52033-fa32-4d6a-b008-d2b07c667724",
-  "billingAddressId": "5cd52033-fa32-4d6a-b008-d2b07c667724"
+  "shippingAddressId": "2b8f24c0-a3cc-41c7-8cda-431b24483491",
+  "billingAddressId": "2b8f24c0-a3cc-41c7-8cda-431b24483491"
 }
 
 ### List addresses
@@ -105,10 +105,17 @@ Content-Type: application/json
 Authorization: Bearer {{Token}}
 
 {
-  "Street1": "124 Main",
+  "Street1": "2124 Main",
   "Street2": "",
   "City": "Kent",
   "State": "OH",
   "PostalCode": "44444",
   "Country": "USA"
 }
+
+### Flush cache
+POST {{RiverBooks.Web_HostAddress}}/user/address
+Accept: application/json
+Content-Type: application/json
+
+{}

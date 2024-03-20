@@ -1,3 +1,3 @@
-namespace RiverBooks.OrderProcessing.Integrations;
+namespace RiverBooks.OrderProcessing;
 
 internal record OrderAddress(Guid Id, Address Address);

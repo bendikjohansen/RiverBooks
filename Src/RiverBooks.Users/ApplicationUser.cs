@@ -1,21 +1,25 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 using Ardalis.GuardClauses;
 
 using Microsoft.AspNetCore.Identity;
 
 using RiverBooks.Users.Data;
-using RiverBooks.Users.UseCases.User;
 
 namespace RiverBooks.Users;
 
-internal class ApplicationUser : IdentityUser
+internal class ApplicationUser : IdentityUser, IHaveDomainEvents
 {
     public string FullName { get; set; } = string.Empty;
 
     private readonly List<CartItem> _cartItems = [];
     private readonly List<UserStreetAddress> _addresses = [];
+    private readonly List<DomainEventBase> _domainEvents = [];
 
     public IReadOnlyCollection<CartItem> CartItems => _cartItems.AsReadOnly();
     public IReadOnlyCollection<UserStreetAddress> Addresses => _addresses.AsReadOnly();
+    [NotMapped]
+    public IEnumerable<DomainEventBase> DomainEvents => _domainEvents.AsReadOnly();
 
     public void AddItemToCart(CartItem item)
     {
@@ -25,7 +29,6 @@ internal class ApplicationUser : IdentityUser
         if (existingBook is not null)
         {
             existingBook.UpdateQuantity(existingBook.Quantity + item.Quantity);
-            // TODO: What if other details have changed?
             existingBook.UpdateDescription(item.Description);
             existingBook.UpdateUnitPrice(item.UnitPrice);
             return;
@@ -35,6 +38,8 @@ internal class ApplicationUser : IdentityUser
     }
 
     public void ClearCart() => _cartItems.Clear();
+    public void ClearDomainEvents() => _domainEvents.Clear();
+    protected void RegisterDomainEvent(DomainEventBase domainEvent) => _domainEvents.Add(domainEvent);
 
     public UserStreetAddress AddAddress(Address address)
     {
@@ -48,6 +53,8 @@ internal class ApplicationUser : IdentityUser
 
         var newAddress = new UserStreetAddress(Id, address);
         _addresses.Add(newAddress);
+
+        RegisterDomainEvent(new AddressAddedEvent(newAddress));
 
         return newAddress;
     }
