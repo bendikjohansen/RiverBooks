@@ -8,6 +8,7 @@ using RiverBooks.Books;
 using RiverBooks.OrderProcessing;
 using RiverBooks.SharedKernel;
 using RiverBooks.Users;
+using RiverBooks.Users.UseCases.Cart;
 
 using Serilog;
 
@@ -27,13 +28,16 @@ builder.Services.AddFastEndpoints()
     .AddAuthorization()
     .SwaggerDocument();
 
-List<Assembly> mediatrAssemblies = [typeof(RiverBooks.Web.Program).Assembly];
+List<Assembly> mediatrAssemblies = [typeof(Program).Assembly];
 builder.Services
     .AddBookModuleServices(builder.Configuration, logger, mediatrAssemblies)
     .AddOrderProcessingModuleServices(builder.Configuration, logger, mediatrAssemblies)
     .AddUserModuleServices(builder.Configuration, logger, mediatrAssemblies);
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(mediatrAssemblies.ToArray()));
+builder.Services.AddMediatRLoggingBehavior()
+    .AddMediatRFluentValidationValidationBehavior();
+builder.Services.AddValidatorsFromAssemblyContaining<AddItemToCartCommandValidator>();
 builder.Services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
 
 var app = builder.Build();
@@ -46,7 +50,4 @@ app.UseFastEndpoints()
 
 app.Run();
 
-namespace RiverBooks.Web
-{
-    public partial class Program {}
-} // needed for tests
+public partial class Program {} // needed for tests

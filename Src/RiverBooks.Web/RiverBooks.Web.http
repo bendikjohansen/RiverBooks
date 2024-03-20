@@ -69,7 +69,7 @@ Authorization: Bearer {{Token}}
 
 {
   "bookId": "{{BookId}}",
-  "quantity": 1
+  "quantity": 0
 }
 
 ### List cart

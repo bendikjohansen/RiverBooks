@@ -1,9 +1,10 @@
 using Ardalis.Result;
 
+using FluentValidation;
+
 using MediatR;
 
 using RiverBooks.Books.Contracts;
-using RiverBooks.Users.Data;
 using RiverBooks.Users.Domain;
 using RiverBooks.Users.Interfaces;
 
@@ -37,5 +38,15 @@ internal class AddItemToCartHandler(IApplicationUserRepository userRepository, I
         await userRepository.SaveChangesAsync();
 
         return Result.Success();
+    }
+}
+
+public class AddItemToCartCommandValidator : AbstractValidator<AddItemToCartCommand>
+{
+    public AddItemToCartCommandValidator()
+    {
+        RuleFor(x => x.EmailAddress).NotEmpty();
+        RuleFor(x => x.Quantity).GreaterThan(0);
+        RuleFor(x => x.BookId).NotEmpty();
     }
 }
