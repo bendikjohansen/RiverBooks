@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Ardalis.Result" Version="8.0.0" />
+        <PackageReference Include="MailKit" Version="4.4.0" />
+        <PackageReference Include="MediatR" Version="12.2.0" />
+        <PackageReference Include="MimeKit" Version="4.4.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+    </ItemGroup>
+</Project>
