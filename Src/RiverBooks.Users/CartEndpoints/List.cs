@@ -7,6 +7,7 @@ using FastEndpoints;
 using MediatR;
 
 using RiverBooks.Users.UseCases.Cart;
+using RiverBooks.Users.UserEndpoints;
 
 namespace RiverBooks.Users.CartEndpoints;
 

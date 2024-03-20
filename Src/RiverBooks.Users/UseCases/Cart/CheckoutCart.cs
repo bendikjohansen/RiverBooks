@@ -4,6 +4,7 @@ using MediatR;
 
 using RiverBooks.OrderProcessing.Contracts;
 using RiverBooks.Users.Data;
+using RiverBooks.Users.Interfaces;
 
 namespace RiverBooks.Users.UseCases.Cart;
 

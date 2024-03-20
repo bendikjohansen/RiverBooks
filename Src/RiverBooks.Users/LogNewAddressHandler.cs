@@ -2,6 +2,8 @@ using MediatR;
 
 using Microsoft.Extensions.Logging;
 
+using RiverBooks.Users.Domain;
+
 namespace RiverBooks.Users;
 
 internal class LogNewAddressHandler(ILogger<LogNewAddressHandler> logger) : INotificationHandler<AddressAddedEvent>

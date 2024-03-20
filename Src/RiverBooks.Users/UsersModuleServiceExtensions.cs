@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using RiverBooks.Users.Data;
+using RiverBooks.Users.Domain;
+using RiverBooks.Users.Infrastructure.Data;
+using RiverBooks.Users.Interfaces;
 
 using Serilog;
 
@@ -25,7 +27,6 @@ public static class UsersModuleServiceExtensions
         mediatrAssemblies.Add(typeof(UsersModuleServiceExtensions).Assembly);
         services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
         services.AddScoped<IReadOnlyUserStreetAddressRepository, EfUserStreetAddressRepository>();
-        services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
 
         logger.Information("{Module} module services registered", "Users");
 

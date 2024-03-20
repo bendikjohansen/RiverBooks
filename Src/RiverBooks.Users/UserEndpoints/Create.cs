@@ -2,6 +2,8 @@ using FastEndpoints;
 
 using Microsoft.AspNetCore.Identity;
 
+using RiverBooks.Users.Domain;
+
 using ProblemDetails = FastEndpoints.ProblemDetails;
 
 namespace RiverBooks.Users.UserEndpoints;

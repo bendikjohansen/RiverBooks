@@ -3,6 +3,8 @@ using FastEndpoints.Security;
 
 using Microsoft.AspNetCore.Identity;
 
+using RiverBooks.Users.Domain;
+
 using Serilog;
 
 namespace RiverBooks.Users.UserEndpoints;

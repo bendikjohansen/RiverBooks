@@ -4,6 +4,8 @@ using MediatR;
 
 using RiverBooks.OrderProcessing.Contracts;
 using RiverBooks.OrderProcessing.Data;
+using RiverBooks.OrderProcessing.Domain;
+using RiverBooks.OrderProcessing.Interfaces;
 
 using Serilog;
 

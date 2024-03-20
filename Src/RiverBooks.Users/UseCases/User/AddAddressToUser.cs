@@ -3,6 +3,8 @@ using Ardalis.Result;
 using MediatR;
 
 using RiverBooks.Users.Data;
+using RiverBooks.Users.Domain;
+using RiverBooks.Users.Interfaces;
 
 using Serilog;
 

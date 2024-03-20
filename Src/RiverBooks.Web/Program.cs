@@ -6,6 +6,7 @@ using FastEndpoints.Swagger;
 
 using RiverBooks.Books;
 using RiverBooks.OrderProcessing;
+using RiverBooks.SharedKernel;
 using RiverBooks.Users;
 
 using Serilog;
@@ -33,6 +34,7 @@ builder.Services
     .AddUserModuleServices(builder.Configuration, logger, mediatrAssemblies);
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(mediatrAssemblies.ToArray()));
+builder.Services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
 
 var app = builder.Build();
 

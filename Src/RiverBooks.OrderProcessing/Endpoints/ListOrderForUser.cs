@@ -7,6 +7,7 @@ using FastEndpoints;
 using MediatR;
 
 using RiverBooks.OrderProcessing.Data;
+using RiverBooks.OrderProcessing.Interfaces;
 
 namespace RiverBooks.OrderProcessing.Endpoints;
 
