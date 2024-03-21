@@ -19,7 +19,7 @@ internal class FluentValidationBehavior<TRequest, TResponse>(IEnumerable<IValida
         }
 
         var context = new ValidationContext<TRequest>(request);
-        var validationResults = await Task.WhenAll(validators.Select(v => v.ValidateAsync(request, cancellationToken)));
+        var validationResults = await Task.WhenAll(validators.Select(v => v.ValidateAsync(context, cancellationToken)));
         var resultErrors = validationResults.SelectMany(r => r.AsErrors()).ToList();
         var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 

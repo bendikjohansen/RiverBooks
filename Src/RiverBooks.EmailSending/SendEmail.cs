@@ -2,10 +2,10 @@ using Ardalis.Result;
 
 using MediatR;
 
+using RiverBooks.EmailSending.Contracts;
+
 
 namespace RiverBooks.EmailSending;
-
-public record SendEmailCommand(string To, string From, string Subject, string Body) : IRequest<Result<Guid>>;
 
 internal class SendEmailCommandHandler(ISendEmail emailSender) : IRequestHandler<SendEmailCommand, Result<Guid>>
 {

@@ -2,6 +2,7 @@ using Ardalis.Result;
 
 using MediatR;
 
+using RiverBooks.Users.CartEndpoints;
 using RiverBooks.Users.Interfaces;
 using RiverBooks.Users.UserEndpoints;
 

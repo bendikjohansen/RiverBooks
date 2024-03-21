@@ -1,16 +1,16 @@
+using Ardalis.Result.AspNetCore;
+
 using FastEndpoints;
 
-using Microsoft.AspNetCore.Identity;
+using MediatR;
 
-using RiverBooks.Users.Domain;
-
-using ProblemDetails = FastEndpoints.ProblemDetails;
+using RiverBooks.Users.UseCases.User;
 
 namespace RiverBooks.Users.UserEndpoints;
 
 public record CreateUserRequest(string Email, string Password);
 
-internal class Create(UserManager<ApplicationUser> userManager) : Endpoint<CreateUserRequest>
+internal class Create(IMediator mediator) : Endpoint<CreateUserRequest>
 {
     public override void Configure()
     {
@@ -20,18 +20,13 @@ internal class Create(UserManager<ApplicationUser> userManager) : Endpoint<Creat
 
     public override async Task HandleAsync(CreateUserRequest req, CancellationToken ct)
     {
-        var user = new ApplicationUser { Email = req.Email, UserName = req.Email };
+        var command = new CreateUserCommand(req.Email, req.Password);
 
-        var result = await userManager.CreateAsync(user, req.Password);
-        if (!result.Succeeded)
+        var result = await mediator.Send(command, ct);
+
+        if (!result.IsSuccess)
         {
-            var problems = new ProblemDetails
-            {
-                Errors = result.Errors.Select(x =>
-                    new ProblemDetails.Error { Code = x.Code, Reason = x.Description, Name = x.Code}),
-                Detail = "Could not register user."
-            };
-            await SendAsync(problems, 400, ct);
+            await SendResultAsync(result.ToMinimalApiResult());
             return;
         }
 

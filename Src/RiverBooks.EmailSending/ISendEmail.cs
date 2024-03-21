@@ -1,6 +1,7 @@
 using MailKit.Net.Smtp;
 
 using Microsoft.Extensions.Logging;
+
 using MimeKit;
 
 namespace RiverBooks.EmailSending;
@@ -14,7 +15,8 @@ internal class MimeKitEmailSender(ILogger<MimeKitEmailSender> logger) : ISendEma
 {
     public async Task SendEmailAsync(string to, string from, string subject, string body)
     {
-        logger.LogInformation("Attempting to send email to {to} from {from} with subject {subject}.", to, from, subject);
+        logger.LogInformation("Attempting to send email to {to} from {from} with subject {subject}.", to, from,
+            subject);
 
         using var client = new SmtpClient();
         await client.ConnectAsync("localhost", 25, false);
@@ -28,5 +30,6 @@ internal class MimeKitEmailSender(ILogger<MimeKitEmailSender> logger) : ISendEma
         logger.LogInformation("Email sent!");
 
         await client.DisconnectAsync(true);
+        logger.LogInformation("SMTP client disconnected");
     }
 }

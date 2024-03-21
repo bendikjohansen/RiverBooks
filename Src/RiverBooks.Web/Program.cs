@@ -29,7 +29,7 @@ builder.Services.AddFastEndpoints()
     .AddAuthorization()
     .SwaggerDocument();
 
-List<Assembly> mediatrAssemblies = [typeof(Program).Assembly];
+List<Assembly> mediatrAssemblies = [typeof(RiverBooks.Web.Program).Assembly];
 builder.Services
     .AddBookModuleServices(builder.Configuration, logger, mediatrAssemblies)
     .AddOrderProcessingModuleServices(builder.Configuration, logger, mediatrAssemblies)
@@ -37,8 +37,8 @@ builder.Services
     .AddEmailSendingModuleServices(builder.Configuration, logger, mediatrAssemblies);
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(mediatrAssemblies.ToArray()));
-builder.Services.AddMediatRLoggingBehavior()
-    .AddMediatRFluentValidationValidationBehavior();
+builder.Services.AddMediatRLoggingBehavior();
+builder.Services.AddMediatRFluentValidationValidationBehavior();
 builder.Services.AddValidatorsFromAssemblyContaining<AddItemToCartCommandValidator>();
 builder.Services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
 
@@ -52,4 +52,7 @@ app.UseFastEndpoints()
 
 app.Run();
 
-public partial class Program {} // needed for tests
+namespace RiverBooks.Web
+{
+    public partial class Program {}
+} // needed for tests
