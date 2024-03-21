@@ -20,3 +20,8 @@ services:
     ports:
       - "25:25"
       - "37408:37408"
+  mongo_email:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"

@@ -6,7 +6,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "email": "bendikj+108@gmail.com",
+  "email": "bendikj@gmail.com",
   "password": "$eCr3t"
 }
 
@@ -28,7 +28,7 @@ Accept: application/json
 Authorization: Bearer {{ Token }}
 
 ### Get Book
-@BookId=418B2BB4-CE5D-4EAA-9B7A-82FA382291DA
+@BookId=F8E9B841-E4AD-45ED-A68C-04E5EDD375FC
 GET {{RiverBooks.Web_HostAddress}}/books/{{BookId}}
 Accept: application/json
 
@@ -58,7 +58,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "newPrice": -9.99
+  "newPrice": 9.99
 }
 
 ### Add Item to cart
@@ -112,3 +112,7 @@ Authorization: Bearer {{Token}}
   "PostalCode": "44444",
   "Country": "USA"
 }
+
+### List emails
+GET {{RiverBooks.Web_HostAddress}}/emails
+Accept: application/json

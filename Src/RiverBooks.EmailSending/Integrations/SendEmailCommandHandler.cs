@@ -1,13 +1,10 @@
 using Ardalis.Result;
 
-using MediatR;
-
 using RiverBooks.EmailSending.Contracts;
 
+namespace RiverBooks.EmailSending.Integrations;
 
-namespace RiverBooks.EmailSending;
-
-internal class SendEmailCommandHandler(ISendEmail emailSender) : IRequestHandler<SendEmailCommand, Result<Guid>>
+internal class SendEmailCommandHandler(ISendEmail emailSender) // : IRequestHandler<SendEmailCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(SendEmailCommand request, CancellationToken ct)
     {
