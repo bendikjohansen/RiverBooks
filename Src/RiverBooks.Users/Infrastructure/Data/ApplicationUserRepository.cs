@@ -17,5 +17,9 @@ internal class EfApplicationUserRepository(UsersDbContext dbContext) : IApplicat
             .Include(user => user.Addresses)
             .SingleAsync(user => user.Email == email);
 
+    public Task<ApplicationUser> GetUserByIdAsync(Guid userId) =>
+        dbContext.ApplicationUsers.SingleAsync(user => user.Id == userId.ToString());
+
+
     public Task SaveChangesAsync() => dbContext.SaveChangesAsync();
 }

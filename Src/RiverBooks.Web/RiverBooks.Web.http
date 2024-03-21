@@ -69,7 +69,7 @@ Authorization: Bearer {{Token}}
 
 {
   "bookId": "{{BookId}}",
-  "quantity": 0
+  "quantity": 1
 }
 
 ### List cart
@@ -89,8 +89,8 @@ Content-Type: application/json
 Authorization: Bearer {{Token}}
 
 {
-  "shippingAddressId": "2b8f24c0-a3cc-41c7-8cda-431b24483491",
-  "billingAddressId": "2b8f24c0-a3cc-41c7-8cda-431b24483491"
+  "shippingAddressId": "a3ebe8c5-e76a-4f60-a772-90e785bacb89",
+  "billingAddressId": "a3ebe8c5-e76a-4f60-a772-90e785bacb89"
 }
 
 ### List addresses
@@ -112,10 +112,3 @@ Authorization: Bearer {{Token}}
   "PostalCode": "44444",
   "Country": "USA"
 }
-
-### Flush cache
-POST {{RiverBooks.Web_HostAddress}}/user/address
-Accept: application/json
-Content-Type: application/json
-
-{}
