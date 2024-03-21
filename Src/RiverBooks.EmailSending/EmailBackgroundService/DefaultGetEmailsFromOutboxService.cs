@@ -4,19 +4,13 @@ using MongoDB.Driver;
 
 namespace RiverBooks.EmailSending;
 
-internal interface IOutboxService
+internal interface IGetEmailsFromOutboxService
 {
-    Task QueueEmailForSending(EmailOutboxEntity entity);
     Task<Result<EmailOutboxEntity>> GetUnprocessedEmailEntity();
 }
 
-internal class MongoDbOutboxService(IMongoCollection<EmailOutboxEntity> emailCollection) : IOutboxService
+internal class DefaultGetEmailsFromOutboxService(IMongoCollection<EmailOutboxEntity> emailCollection) : IGetEmailsFromOutboxService
 {
-    public async Task QueueEmailForSending(EmailOutboxEntity entity)
-    {
-        await emailCollection.InsertOneAsync(entity);
-    }
-
     public async Task<Result<EmailOutboxEntity>> GetUnprocessedEmailEntity()
     {
         var filter = Builders<EmailOutboxEntity>.Filter.Eq(entity => entity.ProcessedAt, null);
@@ -26,9 +20,7 @@ internal class MongoDbOutboxService(IMongoCollection<EmailOutboxEntity> emailCol
         {
             return Result.NotFound();
         }
-        else
-        {
-            return unsentEmailEntity;
-        }
+
+        return unsentEmailEntity;
     }
 }

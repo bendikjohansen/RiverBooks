@@ -4,14 +4,19 @@ using MongoDB.Driver;
 
 namespace RiverBooks.EmailSending;
 
+internal interface ISendEmailFromOutboxService
+{
+    Task CheckForAndSendEmails();
+}
+
 internal class DefaultSendEmailFromOutboxService(
-    IOutboxService outboxService,
+    IGetEmailsFromOutboxService getEmailsFromOutboxService,
     ISendEmail emailSender,
     IMongoCollection<EmailOutboxEntity> emailCollection) : ISendEmailFromOutboxService
 {
     public async Task CheckForAndSendEmails()
     {
-        var result = await outboxService.GetUnprocessedEmailEntity();
+        var result = await getEmailsFromOutboxService.GetUnprocessedEmailEntity();
 
         if (result.Status == ResultStatus.NotFound)
         {

@@ -4,6 +4,8 @@ using MongoDB.Driver;
 
 namespace RiverBooks.EmailSending.Endpoints;
 
+public record ListEmailsResponse(int Count, List<EmailOutboxEntity> Emails);
+
 internal class ListEmails(IMongoCollection<EmailOutboxEntity> emailCollection) : EndpointWithoutRequest<ListEmailsResponse>
 {
     public override void Configure()
@@ -22,5 +24,3 @@ internal class ListEmails(IMongoCollection<EmailOutboxEntity> emailCollection) :
         Response = response;
     }
 }
-
-public record ListEmailsResponse(int Count, List<EmailOutboxEntity> Emails);

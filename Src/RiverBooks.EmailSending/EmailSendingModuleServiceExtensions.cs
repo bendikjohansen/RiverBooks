@@ -16,7 +16,8 @@ public static class EmailSendingModuleServiceExtensions
     public static IServiceCollection AddEmailSendingModuleServices(this IServiceCollection services, IConfiguration configuration, ILogger logger, List<Assembly> mediatrAssemblies)
     {
         services.AddTransient<ISendEmail, MimeKitEmailSender>();
-        services.AddTransient<IOutboxService, MongoDbOutboxService>();
+        services.AddTransient<IGetEmailsFromOutboxService, DefaultGetEmailsFromOutboxService>();
+        services.AddTransient<IQueueEmailsForSendingService, DefaultQueueEmailsForSendingService>();
         services.AddTransient<ISendEmailFromOutboxService, DefaultSendEmailFromOutboxService>();
 
         services.Configure<MongoDbSettings>(configuration.GetSection("MongoDB"));
