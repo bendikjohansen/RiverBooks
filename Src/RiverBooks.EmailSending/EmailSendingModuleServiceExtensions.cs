@@ -5,11 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 using MongoDB.Driver;
 
+using RiverBooks.EmailSending.EmailBackgroundService;
+
 using Serilog;
 
 namespace RiverBooks.EmailSending;
-
-
 
 public static class EmailSendingModuleServiceExtensions
 {
