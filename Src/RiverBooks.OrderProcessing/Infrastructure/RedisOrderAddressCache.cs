@@ -2,6 +2,7 @@ using System.Text.Json;
 
 using Ardalis.Result;
 
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 using RiverBooks.OrderProcessing.Interfaces;
@@ -15,9 +16,9 @@ internal class RedisOrderAddressCache : IOrderAddressCache
     private readonly IDatabase _db;
     private readonly ILogger<RedisOrderAddressCache> _logger;
 
-    public RedisOrderAddressCache(ILogger<RedisOrderAddressCache> logger)
+    public RedisOrderAddressCache(ILogger<RedisOrderAddressCache> logger, IConfiguration configuration)
     {
-        var redis = ConnectionMultiplexer.Connect("localhost"); // TODO: Get server from configuration
+        var redis = ConnectionMultiplexer.Connect(configuration.GetConnectionString("Redis")!);
         _db = redis.GetDatabase();
         _logger = logger;
     }

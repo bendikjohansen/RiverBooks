@@ -1,3 +1,5 @@
+using Ardalis.Result;
+
 using FastEndpoints;
 
 using FluentValidation;
@@ -31,8 +33,11 @@ internal class UpdatePrice(IBookService bookService) : Endpoint<UpdateBookPriceR
 
     public override async Task HandleAsync(UpdateBookPriceRequest req, CancellationToken ct)
     {
-        // TODO: Handle not found
-        await bookService.UpdateBookPriceAsync(req.Id, req.NewPrice);
+        var result = await bookService.UpdateBookPriceAsync(req.Id, req.NewPrice);
+        if (result.Status == ResultStatus.NotFound)
+        {
+            await SendNotFoundAsync(ct);
+        }
         var updatedBook = await bookService.GetBookByIdAsync(req.Id);
         await SendAsync(updatedBook, cancellation: ct);
     }

@@ -24,8 +24,7 @@ public static class EmailSendingModuleServiceExtensions
         services.AddMongoDb(configuration);
         mediatrAssemblies.Add(typeof(EmailSendingModuleServiceExtensions).Assembly);
 
-        // TODO: Find out why email client is not disconnecting properly
-        // services.AddHostedService<EmailSendingBackgroundService>();
+        services.AddHostedService<EmailSendingBackgroundService>();
 
         logger.Information("{Module} module services registered", "EmailSending");
 

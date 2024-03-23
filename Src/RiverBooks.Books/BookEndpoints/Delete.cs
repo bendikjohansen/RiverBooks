@@ -14,7 +14,6 @@ internal class Delete(IBookService bookService) : Endpoint<DeleteBookRequest, Bo
 
     public override async Task HandleAsync(DeleteBookRequest req, CancellationToken ct)
     {
-        // TODO: Handle not found
         await bookService.DeleteBookAsync(req.Id);
         await SendNoContentAsync(ct);
     }

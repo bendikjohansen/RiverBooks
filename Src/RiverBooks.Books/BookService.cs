@@ -1,3 +1,5 @@
+using Ardalis.Result;
+
 using RiverBooks.Books.Data;
 
 namespace RiverBooks.Books;
@@ -5,10 +7,10 @@ namespace RiverBooks.Books;
 internal interface IBookService
 {
     Task<List<BookDto>> ListBooksAsync();
-    Task<BookDto> GetBookByIdAsync(Guid id);
+    Task<Result<BookDto>> GetBookByIdAsync(Guid id);
     Task CreateBookAsync(BookDto newBook);
     Task DeleteBookAsync(Guid id);
-    Task UpdateBookPriceAsync(Guid bookId, decimal newPrice);
+    Task<Result> UpdateBookPriceAsync(Guid bookId, decimal newPrice);
 }
 
 internal class BookService(IBookRepository repository) : IBookService
@@ -20,13 +22,16 @@ internal class BookService(IBookRepository repository) : IBookService
         return books.Select(book => new BookDto(book.Id, book.Title, book.Author, book.Price)).ToList();
     }
 
-    public async Task<BookDto> GetBookByIdAsync(Guid id)
+    public async Task<Result<BookDto>> GetBookByIdAsync(Guid id)
     {
         var book = await repository.GetByIdAsync(id);
 
-        // TODO: handle not found case
+        if (book == null)
+        {
+            return Result.NotFound();
+        }
 
-        return new BookDto(book!.Id, book.Title, book.Author, book.Price);
+        return new BookDto(book.Id, book.Title, book.Author, book.Price);
     }
 
     public async Task CreateBookAsync(BookDto newBook)
@@ -41,21 +46,26 @@ internal class BookService(IBookRepository repository) : IBookService
     {
         var book = await repository.GetByIdAsync(id);
 
-        // TODO: handle not found case
+        if (book == null)
+        {
+            return;
+        }
 
         await repository.DeleteAsync(book!);
         await repository.SaveChangesAsync();
     }
 
-    public async Task UpdateBookPriceAsync(Guid bookId, decimal newPrice)
+    public async Task<Result> UpdateBookPriceAsync(Guid bookId, decimal newPrice)
     {
-        // TODO: validate the price
-
         var book = await repository.GetByIdAsync(bookId);
 
-        // TODO: handle no case found
+        if (book is null)
+        {
+            return Result.NotFound();
+        }
 
-        book!.UpdatePrice(newPrice);
+        book.UpdatePrice(newPrice);
         await repository.SaveChangesAsync();
+        return Result.Success();
     }
 }

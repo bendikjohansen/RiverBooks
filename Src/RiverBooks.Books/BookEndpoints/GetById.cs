@@ -1,3 +1,5 @@
+using Ardalis.Result;
+
 using FastEndpoints;
 
 namespace RiverBooks.Books.BookEndpoints;
@@ -14,13 +16,13 @@ internal class GetById(IBookService bookService) : Endpoint<GetByIdRequest, Book
 
     public override async Task HandleAsync(GetByIdRequest req, CancellationToken ct)
     {
-        var book = await bookService.GetBookByIdAsync(req.Id);
+        var result = await bookService.GetBookByIdAsync(req.Id);
 
-        if (book is null)
+        if (result.Status == ResultStatus.NotFound)
         {
             await SendNotFoundAsync(ct);
             return;
         }
-        await SendAsync(book, cancellation: ct);
+        await SendAsync(result.Value, cancellation: ct);
     }
 }
