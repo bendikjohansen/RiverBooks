@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\RiverBooks.Reporting\RiverBooks.Reporting.csproj" />
     <ProjectReference Include="..\RiverBooks.EmailSending\RiverBooks.EmailSending.csproj" />
     <ProjectReference Include="..\RiverBooks.OrderProcessing\RiverBooks.OrderProcessing.csproj" />
     <ProjectReference Include="..\RiverBooks.Users\RiverBooks.Users.csproj" />

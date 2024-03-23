@@ -28,7 +28,7 @@ Accept: application/json
 Authorization: Bearer {{ Token }}
 
 ### Get Book
-@BookId=F8E9B841-E4AD-45ED-A68C-04E5EDD375FC
+@BookId=bbb5a494-3ced-4e39-9bc9-59e1ac8123a1
 GET {{RiverBooks.Web_HostAddress}}/books/{{BookId}}
 Accept: application/json
 
@@ -45,7 +45,7 @@ Content-Type: application/json
 }
 
 #### Get created book
-GET {{RiverBooks.Web_HostAddress}}/books/518b2bb4-ce5d-4eaa-9b7a-82fa382291da
+GET {{RiverBooks.Web_HostAddress}}/books/418B2BB4-CE5D-4EAA-9B7A-82FA382291DA
 Accept: application/json
 
 #### Delete created book
@@ -69,7 +69,7 @@ Authorization: Bearer {{Token}}
 
 {
   "bookId": "{{BookId}}",
-  "quantity": 1
+  "quantity": 3
 }
 
 ### List cart
@@ -115,4 +115,8 @@ Authorization: Bearer {{Token}}
 
 ### List emails
 GET {{RiverBooks.Web_HostAddress}}/emails
+Accept: application/json
+
+### List top sales
+GET {{RiverBooks.Web_HostAddress}}/topsales?year=2024&month=3
 Accept: application/json
