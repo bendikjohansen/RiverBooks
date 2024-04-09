@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.EmailSending.Con
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RiverBooks.Reporting", "RiverBooks.Reporting", "{BD5E01E4-4E14-4722-88AB-273FD4D0B3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Reporting", "RiverBooks.Reporting\RiverBooks.Reporting.csproj", "{212F00D7-2796-4AE1-846A-BE76607A75A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Reporting", "src\RiverBooks.Reporting\RiverBooks.Reporting.csproj", "{212F00D7-2796-4AE1-846A-BE76607A75A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
